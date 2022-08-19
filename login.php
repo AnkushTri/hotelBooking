@@ -3,7 +3,7 @@
             <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background=""></div>
             <div class="container">
                 <div class="page-cover text-center">
-                    <h2 class="page-cover-tittle">Admin Login</h2>
+                    <h2 class="page-cover-tittle">Admin Login hello</h2>
                     <ol class="breadcrumb">
                         <li><a href="index.php">Home</a></li>
                         <li class="active">Admin Login</li>
@@ -23,13 +23,13 @@
              ?>
             </div>
         </div> 
-          <form class="row contact_form" id="contactForm" method="post"  >
+          <form class="row contact_form" id="contactForm" method="post">
                 <div class="col-md-4 mx-auto">
                   <div class="form-group">
                       <input type="email" class="form-control"   name="email" placeholder="email">
                     </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control"  name="password" placeholder="password">
+                     <div class="form-group">
+                      <input type="password" class="form-control"   name="password" placeholder="password">
                     </div>
                   </div>
                 </div>
@@ -43,20 +43,21 @@
 <?php
 if(isset($_REQUEST["submit"]))
 {
-   $email = $_REQUEST["email"];
-   $password = $_REQUEST["password"];
+    $email = $_REQUEST["email"];
+     $p = $_REQUEST["password"];
    include("config.php");
-    $q = "SELECT * FROM admin_login WHERE  email='$email'";
+    $q = "SELECT * FROM `admin_login` WHERE `email`='$email' and `password`='$p'";
     $result = mysqli_query($conn,$q);
     if($data = mysqli_fetch_array($result))
     {
         //create
         $_SESSION['email']=$email;
+        $_SESSION['password']=$p;
         //url redirect
         echo "<script>window.location.assign('welcome.php')</script>";
     }
     else{
-        //url redirect
+        // //url redirect
         // echo mysqli_error($conn);
         // die();
         echo "<script>window.location.assign('login.php?msg=Invalid email or password')</script>";

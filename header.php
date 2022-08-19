@@ -49,7 +49,7 @@
                             </li> 
                             <li class="nav-item"><a class="nav-link" href="elements.php">Elemests</a></li>
                             <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
-                                           <?php 
+                              <?php 
                                  if(isset($_SESSION["email"]))
                                  {
                               ?>

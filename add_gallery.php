@@ -25,7 +25,7 @@
             </div>
         </div> 
              <form class="row contact_form" id="contactForm" enctype="multipart/form-data" method="post"  >
-                <div class="col-md-4 mx-auto">
+                <div class="col-md- mx-auto">
                   <div class="form-group">
                       <input type="text" class="form-control"   name="title" placeholder="enter title of image">
                     </div>
