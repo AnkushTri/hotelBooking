@@ -1,5 +1,15 @@
-<!-- <section class="contact_area section_gap"> -->
-    <?php include_once("header.php"); ?>
+<?php
+   include_once("header.php");
+   //session check
+   if($_SESSION["email"])
+   {
+    //store
+    $email = $_SESSION["email"];
+   }
+   else{
+    echo "<script>window.location.assign('login.php?msg=Unauthorised user')</script>";
+   }
+?><!-- <section class="contact_area section_gap"> -->
  <section class="breadcrumb_area">
             <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background=""></div>
             <div class="container">

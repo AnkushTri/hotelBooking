@@ -53,6 +53,9 @@
                                  if(isset($_SESSION["email"]))
                                  {
                               ?>
+                              <li class="nav-item">
+                                    <a class="nav-link" href="admin.php">Admin</a>
+                                 </li>
                                  <li class="nav-item">
                                     <a class="nav-link" href="logout.php">Logout</a>
                                  </li>

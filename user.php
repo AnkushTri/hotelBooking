@@ -1,20 +1,10 @@
-<?php
-   include_once("header.php");
-   //session check
-   if($_SESSION["email"])
-   {
-    //store
-    $email = $_SESSION["email"];
-   }
-   else{
-    echo "<script>window.location.assign('login.php?msg=Unauthorised user')</script>";
-   }
-?><!-- <section class="contact_area section_gap"> -->
+<!-- <section class="contact_area section_gap"> -->
+    <?php include_once("header.php"); ?>
  <section class="breadcrumb_area">
             <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background=""></div>
             <div class="container">
                 <div class="page-cover text-center">
-                    <h2 class="page-cover-tittle">ADD HOTEL</h2>
+                    <h2 class="page-cover-tittle">USER</h2>
                     <ol class="breadcrumb">
                         <li><a href="index.php">Home</a></li>
                         <li class="active">Add Hotel</li>
@@ -40,23 +30,18 @@
                   <div class="form-group ">
                       <input type="text" class="form-control"   name="hotel_name" placeholder="Hotel name">
                     </div>
-                      <div class="form-group">
-                        <input type="email" class="form-control"  name="email" id="email" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control"  name="pwd" id="password" placeholder="Password">
-                    </div>
-
                 </div>
                  <div class="col-md-6" >
                     <div class="form-group">
-                     <textarea class="form-control" name="description" rows="1" placeholder="Description"></textarea>
+                      <input type="text" class="form-control"   name="hotel_name" placeholder="Hotel name">
+                    
                     </div>
                 
                  </div>
                  <div class="col-md-6">
                     <div class="form-group">
-                        <input type="file" class="form-control"  name="image" placeholder="Image">
+                      <input type="text" class="form-control"   name="hotel_name" placeholder="Hotel name">
+                  
                     </div>
                 </div>
                     <div class="col-md-6">
@@ -94,7 +79,7 @@
        $hotel_name=$_REQUEST["hotel_name"];
        $description=$_REQUEST["description"];
        $email=$_REQUEST["email"];
-       $pwd=$_REQUEST["pwd"];
+       $password=$_REQUEST["password"];
        $filename=$_FILES["image"]["name"];
        $filetmpname=$_FILES["image"]["tmp_name"];
        $newname=rand().$filename;
@@ -105,9 +90,8 @@
        $contact=$_REQUEST["contact"];
 
         include("config.php");
-       $q="INSERT INTO `hotel`(`hotel_name`,`description`,`email`,`password`,`image`,`location`,`address`,`city`,`contact`) VALUE ('$hotel_name','$description','$email','$pwd','$newname','$location','$address','$city','$contact')";
-     
-      $result=mysqli_query($conn,$q);
+        $q="INSERT INTO `hotel`(`hotel_name`,`description`,`email`,`password`,`image`,`location`,`address`,`city`,`contact`) VALUE ('$hotel_name','$description','$email','$password','$newname','$location','$address','$city','$contact')";
+        $result=mysqli_query($conn,$q);
         if($result>0){
             echo "<script>window.location.assign('add_hotel.php?msg=Record Inserted')</script>";
         }

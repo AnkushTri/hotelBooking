@@ -1,5 +1,14 @@
 <?php
-include_once("header.php");
+   include_once("header.php");
+   //session check
+   if($_SESSION["email"])
+   {
+    //store
+    $email = $_SESSION["email"];
+   }
+   else{
+    echo "<script>window.location.assign('login.php?msg=Unauthorised user')</script>";
+   }
 ?>
 <?php
 $id=$_REQUEST['id'];
@@ -7,10 +16,10 @@ include("config.php");
 $quer="select * from hotel where id='$id'";
  $res=mysqli_query($conn,$quer);
 if($data=mysqli_fetch_array($res)){
-  echo $h_name= $data['hotel_name'];
+  $hotel_name= $data['hotel_name'];
   $description= $data['description'];
    $email=$data['email'];
-   $password=$data['password'];
+   $pwd=$data['pwd'];
    $image=$data['image'];
    $location=$data['location'];
    $address=$data['address'];
@@ -25,7 +34,7 @@ if($data=mysqli_fetch_array($res)){
                     <h2 class="page-cover-tittle">UPDATE HOTEL</h2>
                     <ol class="breadcrumb">
                         <li><a href="index.php">Home</a></li>
-                        <li class="active">Update hotel</li>
+                        <li class="active">Update Hotel</li>
                     </ol>
                 </div>
          </div>
@@ -45,10 +54,10 @@ if($data=mysqli_fetch_array($res)){
              <form class="row contact_form" id="contactForm" enctype="multipart/form-data" method="post"  >
                 <input type="hidden" name="id" value="<?php echo $id;?>">
                  <input type="hidden" name="oldimage" value="<?php echo $image;?>">
-                 <input type="hidden" name="oldhotel_name" value="<?php echo $h_name;?>">
+                 <input type="hidden" name="oldhotel_name" value="<?php echo $hotel_name;?>">
                  <input type="hidden" name="oldescription" value="<?php echo $description;?>">
                  <input type="hidden" name="oldemail" value="<?php echo $email;?>">
-                 <input type="hidden" name="oldpassword" value="<?php echo $password;?>">
+                 <input type="hidden" name="oldpassword" value="<?php echo $pwd;?>">
                  <input type="hidden" name="oldlocation" value="<?php echo $location;?>">
                  <input type="hidden" name="oldaddress" value="<?php echo $address;?>">
                  <input type="hidden" name="oldcity" value="<?php echo $city;?>">
@@ -57,45 +66,45 @@ if($data=mysqli_fetch_array($res)){
              <!-- <form class="row contact_form" enctype="multipart/form-data" method="post" id="contactForm" > -->
                 <div class="col-md-6" >
                   <div class="form-group ">
-                      <input type="text" class="form-control"   name="hotel_name" placeholder="Hotel name">
+                      <input type="text" class="form-control"   name="hotel_name" placeholder="Hotel name" value="<?php echo $hotel_name; ?>">
                     </div>
                       <div class="form-group">
-                        <input type="email" class="form-control"  name="email" id="email" placeholder="Email">
+                        <input type="email" class="form-control"  name="email" id="email" placeholder="Email" value="<?php echo $email;?>">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control"  name="password" id="password" placeholder="Password">
+                        <input type="password" class="form-control"  name="pwdd" id="password" placeholder="Password" value="<?php echo $pwd;?>">
                     </div>
 
                 </div>
                  <div class="col-md-6" >
                     <div class="form-group">
-                     <textarea class="form-control" name="description" rows="1" placeholder="Description"></textarea>
+                      <textarea class="form-control" name="description" rows="1" placeholder="Description"><?php echo $description;?> </textarea>
                     </div>
                 
                  </div>
                  <div class="col-md-6">
                     <div class="form-group">
-                        <input type="file" class="form-control"  name="image" placeholder="Image">
+                        <input type="file" class="form-control"  name="image" placeholder="Image" value="<?php echo $image;?>">
                     </div>
                 </div>
                     <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" class="form-control"  name="location" placeholder="Location">
+                        <input type="text" class="form-control"  name="location" placeholder="Location" value="<?php echo $location;?>">
                     </div>
                 </div>
                 <div class="col-md-6">
                      <div class="form-group">
-                        <input type="text" class="form-control"  name="address" placeholder="Address">
+                        <input type="text" class="form-control"  name="address" placeholder="Address"value="<?php echo $address;?>">
                     </div>
                  </div>
                  <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" class="form-control"  name="city" placeholder="City">
+                        <input type="text" class="form-control"  name="city" placeholder="City"value="<?php echo $city;?>">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" class="form-control"  name="contact"  placeholder="Contact">
+                        <input type="text" class="form-control"  name="contact"  placeholder="Contact"value="<?php echo $contact;?>">
                     </div>
                     </div>
                   </div>
@@ -131,10 +140,10 @@ if($data=mysqli_fetch_array($res)){
         $email=$_REQUEST["oldemail"];
        }    
        if($_REQUEST['password']){
-            $password=$_REQUEST["password"];
+            $pwd=$_REQUEST["pwd"];
         }
        else{
-        $password=$_REQUEST["oldpassword"];
+        $pwd=$_REQUEST["oldpassword"];
        }
        
      
@@ -182,7 +191,7 @@ if($data=mysqli_fetch_array($res)){
     //    $contact=$_REQUEST["contact"];
 
         include("config.php");
-        $q="UPDATE `hotel` set `hotel_name`='$hotel_name',`description`='$description',`image`='$newname', `email`='$email', `password`='$password',`location`='$location',`address`='$address',`city`='$city',`contact`='$contact' where id='$id'";
+        $q="UPDATE `hotel` set `hotel_name`='$hotel_name',`description`='$description',`image`='$newname', `email`='$email', `password`='$pwd',`location`='$location',`address`='$address',`city`='$city',`contact`='$contact' where id='$id'";
         $result=mysqli_query($conn,$q);
         if($result>0){
             echo "<script>window.location.assign('manage_hotel.php?msg=Record Inserted')</script>";
