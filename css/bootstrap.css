@@ -334,6 +334,7 @@ input {
 button,
 select {
   text-transform: none;
+  display: visible;
 }
 
 button,

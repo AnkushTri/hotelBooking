@@ -68,7 +68,7 @@ if($data=mysqli_fetch_array($res)){
                                 while($data = mysqli_fetch_array($res))
                                 {
                                     // echo "<option value='$data[id]'>".$data['hotel_name']."</option>";
-                                     echo "<option value='$data[id]'>".$data['hotel_name']."</option>";
+                                     echo "<option value='$data[hotel_name]'>".$data['hotel_name']."</option>";
                                 }
                             ?>
                            </select> 

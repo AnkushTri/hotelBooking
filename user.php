@@ -7,7 +7,7 @@
                     <h2 class="page-cover-tittle">USER</h2>
                     <ol class="breadcrumb">
                         <li><a href="index.php">Home</a></li>
-                        <li class="active">Add Hotel</li>
+                        <li class="active">User Registration</li>
                     </ol>
                 </div>
             </div>
@@ -28,25 +28,25 @@
              <form class="row contact_form" enctype="multipart/form-data" method="post" id="contactForm" >
                 <div class="col-md-6" >
                   <div class="form-group ">
-                      <input type="text" class="form-control"   name="hotel_name" placeholder="Hotel name">
+                      <input type="text" class="form-control"   name="user_name" placeholder="Name">
                     </div>
                 </div>
                  <div class="col-md-6" >
                     <div class="form-group">
-                      <input type="text" class="form-control"   name="hotel_name" placeholder="Hotel name">
+                      <input type="email" class="form-control"   name="user_email" placeholder="Email">
                     
                     </div>
                 
                  </div>
                  <div class="col-md-6">
                     <div class="form-group">
-                      <input type="text" class="form-control"   name="hotel_name" placeholder="Hotel name">
+                      <input type="password" class="form-control"   name="pwd" placeholder="Password">
                   
                     </div>
                 </div>
                     <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" class="form-control"  name="location" placeholder="Location">
+                        <input type="text" class="form-control"  name="contact" placeholder="Contact">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -61,7 +61,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" class="form-control"  name="contact"  placeholder="Contact">
+                        <input type="text" class="form-control"  name="pincode"  placeholder="Pin Code">
                     </div>
                     </div>
                   </div>
@@ -74,30 +74,28 @@
 </div>
 <br>
 <!-- </section> -->
+<br><br><br>
 <?php
     if(isset($_REQUEST["submit"])){
-       $hotel_name=$_REQUEST["hotel_name"];
-       $description=$_REQUEST["description"];
-       $email=$_REQUEST["email"];
-       $password=$_REQUEST["password"];
-       $filename=$_FILES["image"]["name"];
-       $filetmpname=$_FILES["image"]["tmp_name"];
-       $newname=rand().$filename;
-       move_uploaded_file($filetmpname,"gallery/".$newname);
-       $location=$_REQUEST["location"];
+       $user_name=$_REQUEST["user_name"];
+    //    $description=$_REQUEST["description"];
+       $user_email=$_REQUEST["user_email"];
+       $pwd=$_REQUEST["pwd"];
+       $contact=$_REQUEST["contact"];
        $address=$_REQUEST["address"];
        $city=$_REQUEST["city"];
-       $contact=$_REQUEST["contact"];
+       $pincode=$_REQUEST["pincode"];
+
 
         include("config.php");
-        $q="INSERT INTO `hotel`(`hotel_name`,`description`,`email`,`password`,`image`,`location`,`address`,`city`,`contact`) VALUE ('$hotel_name','$description','$email','$password','$newname','$location','$address','$city','$contact')";
+        $q="INSERT INTO `user`(`user_name`,`user_email`,`password`,`contact`,`address`,`city`,`pincode`) VALUE ('$user_name','$user_email','$pwd','$contact','$address','$city','$pincode')";
         $result=mysqli_query($conn,$q);
         if($result>0){
-            echo "<script>window.location.assign('add_hotel.php?msg=Record Inserted')</script>";
+            echo "<script>window.location.assign('user.php?msg=Record Inserted')</script>";
         }
         else{
-            echo"eroor";
-            echo "<script>window.location.assign('add_hotel.php?msg=Try Again')</script>";
+            // echo"eroor";
+            echo "<script>window.location.assign('user.php?msg=Try Again')</script>";
         }
 
     }

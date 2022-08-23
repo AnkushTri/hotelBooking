@@ -30,18 +30,26 @@
                         <form class="row contact_form"  method="post" id="contactForm" novalidate="novalidate">
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    
+                               <label for="exampleInputEmail" class="form-label">Name</label>  
                                     <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
                                 </div>
                                 <div class="form-group">
+                                    
+                                   <label for="exampleInputEmail" class="form-label">Email</label>
                                     <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
                                 </div>
                                 <div class="form-group">
+                                    
+                                <label for="exampleInputEmail" class="form-label">Contact</label>
                                     <input type="text" class="form-control" id="contact" name="contact" placeholder="Enter contact">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <textarea class="form-control" name="message" id="message" rows="1" placeholder="Enter Message"></textarea>
+                                    
+                                 <label for="exampleInputEmail" class="form-label">Message</label>      
+                                 <textarea class="form-control" name="message" id="message" rows="1" placeholder="Enter Message"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12 text-center">

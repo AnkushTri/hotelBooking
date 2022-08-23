@@ -38,7 +38,7 @@
              <form class="row contact_form" enctype="multipart/form-data" method="post" id="contactForm" >
                 <div class="col-md-6" >
                   <div class="form-group ">
-                      <select class="contactus form-control" placeholder="hotel" name="hotel" onchange="hit(this.value)"> 
+                      <select class="contactus form-control" placeholder="hotel" name="hotel" onchange="hit(this.value)" style="disply:visible"> 
                             <option value="" disabled selected> Select hotel</option>
                             <?php
                                 include("config.php");
@@ -47,10 +47,10 @@
                                 while($data = mysqli_fetch_array($res))
                                 {
                                     // echo "<option value='$data[id]'>".$data['hotel_name']."</option>";
-                                     echo "<option value='$data[id]'>".$data['hotel_name']."</option>";
+                                     echo "<option value='$data[hotel_name]'>".$data['hotel_name']."</option>";
                                 }
                             ?>
-                           </select> 
+                        </select> 
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control"  name="room_type" placeholder="Room Type">

@@ -1,2 +1,16 @@
 .gitaattributes
 README
+prepros-6.config
+add_gallery.php
+add_hotel.php
+add_room.php
+manage_hotel.php
+manage_room.php
+update_hotel.php
+update_room.php
+delete_hotel.php
+delete_room.php
+
+
+
+
