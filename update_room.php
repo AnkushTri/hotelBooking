@@ -13,13 +13,14 @@
 <?php
 $id=$_REQUEST['id'];
 include("config.php");
-$quer="select * from rooms where id='$id'";
+$quer="select * from `room` where id='$id'";
  $res=mysqli_query($conn,$quer);
 if($data=mysqli_fetch_array($res)){
    $hotel= $data['hotel'];
    $room_type= $data['room_type'];
    $quantity= $data['quantity'];
-   $image=$data['image'];
+   $price= $data['price'];
+   $image=$data['images'];
   $description= $data['description'];
 }
 ?>
@@ -50,11 +51,6 @@ if($data=mysqli_fetch_array($res)){
              <form class="row contact_form" id="contactForm" enctype="multipart/form-data" method="post"  >
                 <input type="hidden" name="id" value="<?php echo $id;?>">
                  <input type="hidden" name="oldimage" value="<?php echo $image;?>">
-                 <input type="hidden" name="oldhotel" value="<?php echo $hotel;?>">
-                 <input type="hidden" name="olddescription" value="<?php echo $description;?>">
-                 <input type="hidden" name="oldroom_type" value="<?php echo $room_type;?>">
-                 <input type="hidden" name="oldquantity" value="<?php echo $quantity;?>">
-                 
                <!-- </div>  -->
              <!-- <form class="row contact_form" enctype="multipart/form-data" method="post" id="contactForm" > -->
                 <div class="col-md-6" >
@@ -68,7 +64,13 @@ if($data=mysqli_fetch_array($res)){
                                 while($data = mysqli_fetch_array($res))
                                 {
                                     // echo "<option value='$data[id]'>".$data['hotel_name']."</option>";
-                                     echo "<option value='$data[hotel_name]'>".$data['hotel_name']."</option>";
+                                    if($hotel == $data['hotel_name'])
+                                    {
+                                        echo "<option value='$data[hotel_name]' selected>".$data['hotel_name']."</option>";
+                                    }
+                                    else{
+                                        echo "<option value='$data[hotel_name]'>".$data['hotel_name']."</option>";
+                                    }
                                 }
                             ?>
                            </select> 
@@ -89,9 +91,14 @@ if($data=mysqli_fetch_array($res)){
                         <input type="number" class="form-control"  name="quantity" placeholder="Quantity" value="<?php echo $quantity; ?>">
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="number" class="form-control"  name="price" placeholder="price" value="<?php echo $price; ?>">
+                    </div>
+                </div>
                  <div class="col-md-6">
                     <div class="form-group">
-                        <input type="file" class="form-control"  name="image" placeholder="Image" value="<?php echo $image; ?>">
+                        <input type="file" class="form-control"  name="images" placeholder="Image" value="<?php echo $image; ?>">
                     </div>
                 </div>
                 <div class="col-md-12 text-center">
@@ -105,51 +112,31 @@ if($data=mysqli_fetch_array($res)){
 <!-- </section> -->
 <?php
     if(isset($_REQUEST["submit"])){
-        if($_REQUEST['hotel']){
-            $hotel=$_REQUEST["hotel"];
-        }
-       else{
-        $hotel=$_REQUEST["oldhotel"];
-       }
-        
-       if($_REQUEST['room_type']){
-            $room_type=$_REQUEST["room_type"];
-        }
-       else{
-        $room_type=$_REQUEST["oldroom_type"];
-       }    
-       if($_REQUEST['quantity']){
-            $quantity=$_REQUEST["quantity"];
-        }
-       else{
-        $quantity=$_REQUEST["oldquantity"];
-       }
-       
-       $id=$_REQUEST["id"];
-       if($_FILES['image']['name'])
+        $hotel=$_REQUEST["hotel"];
+        $room_type=$_REQUEST["room_type"];
+        $quantity=$_REQUEST["quantity"];
+        $price=$_REQUEST["price"];
+        $id=$_REQUEST["id"];
+        $description=$_REQUEST["description"];
+        if($_FILES['images']['name'])
         {
-        $filename=$_FILES["image"]["name"];
-        $filetmpname=$_FILES["image"]["tmp_name"];
-        $newname=rand().$filename;
-        move_uploaded_file($filetmpname,"gallery/".$newname);
+            $filename=$_FILES["images"]["name"];
+            $filetmpname=$_FILES["images"]["tmp_name"];
+            $newname=rand().$filename;
+            move_uploaded_file($filetmpname,"gallery/".$newname);
         }
         else{
             $newname=$_REQUEST['oldimage'];
         }
-        if($_REQUEST['description']){
-            $description=$_REQUEST["description"];
-        }
-       else{
-        $description=$_REQUEST["olddescription"];
-       }
+        
         include("config.php");
-        $q="UPDATE `rooms` set `hotel`='$hotel', `room_type`='$room_type', `quantity`='$quantity',`description`='$description',`image`='$newname' where id='$id'";
+        $q = "UPDATE `room` set `hotel`='$hotel', `room_type`='$room_type', `quantity`='$quantity',`description`='$description',`images`='$newname' WHERE id='$id'";
         $result=mysqli_query($conn,$q);
         if($result>0){
             echo "<script>window.location.assign('manage_room.php?msg=Record Inserted')</script>";
         }
         else{
-            echo"eroor";
+            echo "eroor";
             echo "<script>window.location.assign('manage_room.php?msg=Try Again')</script>";
         }
 

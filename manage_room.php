@@ -45,6 +45,7 @@
                 <th>Hotel</th>
                 <th>Room Type</th>
                 <th>Quantity</th>
+                <th>Price</th>
                 <th>Image</th>
                 <th>Description</th>               
                 <th>Edit</th>                
@@ -54,7 +55,7 @@
             $sno=1;
             include("config.php");
 
-            $q="SELECT * from `rooms`";
+            $q="SELECT * FROM `room`";
             $result=mysqli_query($conn,$q);
 
             while($data=mysqli_fetch_array($result)){
@@ -65,8 +66,9 @@
                 <td><?php echo $data['hotel'];?></td>
                 <td><?php echo $data['room_type'];?></td>
                 <td><?php echo $data['quantity'];?></td>
+                <td>Rs.<?php echo $data['price'];?></td>
                 
-                <td><img src="gallery/<?php echo $data['image'];?>" alt="" width="120px" height="150px"></td>
+                <td><img src="gallery/<?php echo $data['images'];?>" alt="" width="120px" height="150px"></td>
                 <td><?php echo $data['description'];?></td>
                 <td>
                    <a href="update_room.php?id=<?php echo $data['id'];?>"> <i class="fa fa-edit fa-2x text-success"></i></a> 

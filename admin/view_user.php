@@ -65,9 +65,8 @@
             ?>
            <tr>
                 <td><?php echo $sno; ?></td>
-                <td><?php echo $data['user_name'];?></td>
-                <!-- <td><?php echo $data['description'];?></td> -->
-                <td><?php echo $data['user_email'];?></td>
+                <td><?php echo $data['name'];?></td>
+                <td><?php echo $data['email'];?></td>
                 <td><?php echo $data['password'];?></td>
                 <td><?php echo $data['contact'];?></td>
                 <td><?php echo $data['address'];?></td>

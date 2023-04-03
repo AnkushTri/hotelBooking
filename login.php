@@ -54,7 +54,7 @@ if(isset($_REQUEST["submit"]))
         $_SESSION['email']=$email;
         $_SESSION['password']=$p;
         //url redirect
-        echo "<script>window.location.assign('admin.php')</script>";
+        echo "<script>window.location.assign('index.php')</script>";
     }
     else{
         // //url redirect

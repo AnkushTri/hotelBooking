@@ -1,13 +1,12 @@
-
 <?php include_once("header.php"); ?>
  <section class="breadcrumb_area">
             <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background=""></div>
             <div class="container">
                 <div class="page-cover text-center">
-                    <h2 class="page-cover-tittle">Admin Login</h2>
+                    <h2 class="page-cover-tittle">Login</h2>
                     <ol class="breadcrumb">
                         <li><a href="index.php">Home</a></li>
-                        <li class="active">Admin Login</li>
+                        <li class="active">Login</li>
                     </ol>
                 </div>
             </div>
@@ -45,9 +44,9 @@
 if(isset($_REQUEST["submit"]))
 {
     $user_email = $_REQUEST["user_email"];
-     $pwd= $_REQUEST["password"];
-   include("config.php");
-    $q = "SELECT * FROM `user` WHERE `user_email`='$user_email' and `password`='$pwd'";
+    $pwd= $_REQUEST["password"];
+    include("config.php");
+    $q = "SELECT * FROM `user` WHERE `email`='$user_email' and `password`='$pwd'";
     $result = mysqli_query($conn,$q);
     if($data = mysqli_fetch_array($result))
     {
@@ -55,7 +54,7 @@ if(isset($_REQUEST["submit"]))
         $_SESSION['user_email']=$user_email;
         $_SESSION['password']=$pwd;
         //url redirect
-        echo "<script>window.location.assign('this.php')</script>";
+        echo "<script>window.location.assign('index.php')</script>";
     }
     else{
         // //url redirect

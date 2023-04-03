@@ -36,57 +36,50 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
-                            <li class="nav-item "><a class="nav-link" href="index.php">Home</a></li> 
-                            <li class="nav-item"><a class="nav-link" href="about.php">About us</a></li>
-                            <!-- <li class="nav-item"><a class="nav-link" href="accomodation.php">Accomodation</a></li> -->
-                            <li class="nav-item submenu dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="blog.php">Blog</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="blog-single.php">Blog Details</a></li>
-                                </ul>
-                            </li> 
-                           
+                         
                               <?php 
                                  if(isset($_SESSION["email"]))
                                  {
                               ?>
-                              <!-- <li class="nav-item">
-                                    <a class="nav-link" href="admin.php">Admin</a>
-                                 </li> -->
-                                 <!-- <li class="nav-item">
-                                    <a class="nav-link" href="logout.php">AdminLogout</a>
-                                 </li>
+                                 <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hotel</a>
+                                    <ul class="dropdown-menu">
+                                 <li class="nav-item"><a class="nav-link" href="add_hotel.php">Add Hotel</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="manage_hotel.php">Manage Hotel</a></li>
+                                    </ul>
+                                 </li> 
+                                 <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Room</a>
+                                    <ul class="dropdown-menu">
+                                          <li class="nav-item"><a class="nav-link" href="add_room.php">Add Room</a></li>
+                                          <li class="nav-item"><a class="nav-link" href="manage_room.php">Manage Room</a></li>
+                                    </ul>
+                                 </li> 
+                                 <li class="nav-item"><a class="nav-link" href="view_booking.php">Booking</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="view_user.php">User</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="view_enquiry.php">Enquiry</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
                               <?php
                                  }
-                                 else{
-                              ?>
-                               <li class="nav-item">
-                                 <a class="nav-link" href="login.php">AdminLogin</a>
-                              </li>
-                              <?php
-                                 }
-                              ?> -->
-                                <?php 
-                                 if(isset($_SESSION["user_email"]))
+                                 else if(isset($_SESSION["user_email"]))
                                  {
                               ?>
-                               <li class="nav-item "><a class="nav-link" href="view_hotel.php">VIEW HOTEL</a></li>
-                               <li class="nav-item"><a class="nav-link" href="view_room.php">VIEW ROOM</a></li>
+                               <li class="nav-item "><a class="nav-link" href="hotel.php">HOTEL</a></li>
+                              <li class="nav-item"><a class="nav-link" href="booking.php">Our Bookings</a></li>
                                <li class="nav-item"><a class="nav-link" href="enquiry.php">Contact</a></li>
-                              <!-- <li class="nav-item">
-                                    <a class="nav-link" href="admin.php">Admin</a>
-                                 </li> -->
-                                 <li class="nav-item">
-                                    <a class="nav-link" href="user_logout.php">UserLogout</a>
-                                 </li>
-                              <?php
-                                 }
-                                 else{
-                              ?>
-                               <li class="nav-item">
-                                 <a class="nav-link" href="user_login.php">UserLogin</a>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="user_logout.php">Logout</a>
                               </li>
+                              <?php
+                                }
+                                else{
+                              ?>
+                               <li class="nav-item "><a class="nav-link" href="hotel.php"> HOTEL</a></li>
+                               <li class="nav-item"><a class="nav-link" href="enquiry.php">Contact</a></li>
+                               <li class="nav-item"><a class="nav-link" href="user_register.php">Register</a></li>
+                               <li class="nav-item">
+                                 <a class="nav-link" href="user_login.php">Login</a>
+                               </li>
                               <?php
                                  }
                               ?>

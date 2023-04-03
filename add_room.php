@@ -70,6 +70,11 @@
                         <input type="number" class="form-control"  name="quantity" placeholder="Quantity">
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="number" class="form-control"  name="price" placeholder="Price">
+                    </div>
+                </div>
                  <div class="col-md-6">
                     <div class="form-group">
                         <input type="file" class="form-control"  name="image" placeholder="Image">
@@ -88,19 +93,23 @@
        $hotel=$_REQUEST["hotel"];
        $room_type=$_REQUEST["room_type"];
        $quantity=$_REQUEST["quantity"];
+       $price=$_REQUEST["price"];
        $description=$_REQUEST["description"];
        $filename=$_FILES["image"]["name"];
        $filetmpname=$_FILES["image"]["tmp_name"];
        $newname=rand().$filename;
        move_uploaded_file($filetmpname,"gallery/".$newname);
         include("config.php");
-        $q="INSERT INTO `rooms`(`hotel`,`room_type`,`quantity`,`image`,`description`) VALUE ('$hotel','$room_type','$quantity','$newname','$description')";
+        $q="INSERT INTO `room`(`hotel`,`room_type`,`quantity`,`image`,`description`,`price`) VALUE ('$hotel','$room_type','$quantity','$newname','$description','$price')";
         $result=mysqli_query($conn,$q);
         if($result>0){
             echo "<script>window.location.assign('add_room.php?msg=Record Inserted')</script>";
         }
         else{
-            echo"eroor";
+            // echo"eroor";
+            echo mysqli_error($conn);
+            die();
+
             echo "<script>window.location.assign('add_room.php?msg=Try Again')</script>";
         }
 
